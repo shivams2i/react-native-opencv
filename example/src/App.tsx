@@ -1,14 +1,27 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-opencv';
+import { getOpenCVVersion} from 'react-native-opencv';
 
-const result = multiply(3, 7);
+
 
 export default function App() {
+  const [version, setVersion]= React.useState('')
+
+
+  React.useEffect(() => {
+    getCVVersion()
+  }, [])
+  
+
+  const getCVVersion=async()=>{
+  const res = await  getOpenCVVersion()
+  setVersion(res)
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+     <Text>{`openCV version ${version}`}</Text>
     </View>
   );
 }

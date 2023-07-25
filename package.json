@@ -2,9 +2,9 @@
   "name": "react-native-opencv",
   "version": "0.1.0",
   "description": "OpenCv for react native",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
+  "main":  "src/index",
+  "module":  "src/index",
+  "types": "src/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "files": [

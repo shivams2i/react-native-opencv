@@ -11,14 +11,16 @@ npm install react-native-opencv
 ## Usage
 
 
+
 ```js
-import { multiply } from 'react-native-opencv';
+import { getOpenCVVersion, checkForBlurryImage } from 'react-native-opencv';
 
 // ...
+const version = await getOpenCVVersion();
 
-const result = multiply(3, 7);
+const isBlur = await checkForBlurryImage('path')
+
 ```
-
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
