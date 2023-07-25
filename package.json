@@ -43,7 +43,10 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/shivamst11/react-native-opencv",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivamst11/react-native-opencv.git"
+  },
   "author": "shivamst11 <shivamtripathist11@gmail.com> (https://github.com/shivamst11)",
   "license": "MIT",
   "bugs": {
@@ -164,5 +167,8 @@
     "name": "RNOpencvSpec",
     "type": "modules",
     "jsSrcsDir": "src"
+  },
+  "directories": {
+    "example": "example"
   }
 }
