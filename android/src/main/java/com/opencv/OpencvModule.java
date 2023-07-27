@@ -2,32 +2,33 @@ package com.opencv;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Base64;
 
 import androidx.annotation.NonNull;
-
-import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import java.io.File;
 
+import org.opencv.android.Utils;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.android.Utils;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.core.Core;
-
-
-
+import org.opencv.android.OpenCVLoader;
 
 public class OpencvModule extends ReactContextBaseJavaModule {
 
+  private static boolean isOpenCVInitialized = false;
+
   public OpencvModule(@NonNull ReactApplicationContext reactContext) {
     super(reactContext);
+    // Initialize OpenCV when the module is created (only once)
+    if (!isOpenCVInitialized) {
+      OpenCVLoader.initDebug();
+      isOpenCVInitialized = true;
+    }
   }
 
   @Override
@@ -38,27 +39,23 @@ public class OpencvModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void getOpenCVVersion(Promise promise) {
     try {
-      String version = Core.VERSION;
+      String version = Core.VERSION_MAJOR + "." + Core.VERSION_MINOR + "." + Core.VERSION_REVISION;
       promise.resolve(version);
     } catch (Exception e) {
       promise.reject("GET_OPENCV_VERSION_ERROR", e.getMessage());
     }
   }
 
-
-
   @ReactMethod
-  public void checkForBlurryImage(String imageAsBase64, Callback errorCallback, Callback successCallback) {
+  public void checkForBlurryImage(String imagePath,  Promise promise) {
     try {
-      BitmapFactory.Options options = new BitmapFactory.Options();
-      options.inDither = true;
-      options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+      File imageFile = new File(imagePath);
+      if (!imageFile.exists()) {
+        promise.reject("FILE_NOT_FOUND", "File not found");
+        return;
+      }
 
-      byte[] decodedString = Base64.decode(imageAsBase64, Base64.DEFAULT);
-      Bitmap image = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-
-
-//      Bitmap image = decodeSampledBitmapFromFile(imageurl, 2000, 2000);
+      Bitmap image = BitmapFactory.decodeFile(imagePath);
       int l = CvType.CV_8UC1; //8-bit grey scale image
       Mat matImage = new Mat();
       Utils.bitmapToMat(image, matImage);
@@ -85,17 +82,16 @@ public class OpencvModule extends ReactContextBaseJavaModule {
           maxLap = pixel;
       }
 
-//            int soglia = -6118750;
+//     int soglia = -6118750;
       int soglia = -8118750;
       if (maxLap <= soglia) {
         System.out.println("is blur image");
       }
 
-      successCallback.invoke(maxLap <= soglia);
-    } catch (Exception e) {
-      errorCallback.invoke(e.getMessage());
+      promise.resolve(maxLap <= soglia);
+
+    } catch (Exception e)  {
+      promise.reject("IMAGE_PROCESSING_ERROR", e.getMessage());
     }
   }
-
-
 }
