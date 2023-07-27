@@ -67,7 +67,7 @@ PODS:
     - hermes-engine/Pre-built (= 0.72.3)
   - hermes-engine/Pre-built (0.72.3)
   - libevent (2.1.12)
-  - OpenCV (4.2.0)
+  - OpenCV (3.4.1)
   - OpenSSL-Universal (1.1.1100)
   - RCT-Folly (2021.07.22.00):
     - boost
@@ -935,7 +935,7 @@ PODS:
     - glog
   - react-native-opencv (0.1.0):
     - hermes-engine
-    - OpenCV (= 4.2.0)
+    - OpenCV (= 3.4.1)
     - RCT-Folly (= 2021.07.22.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1275,7 +1275,7 @@ SPEC CHECKSUMS:
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: 10fbd3f62405c41ea07e71973ea61e1878d07322
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  OpenCV: e1145a478fbd45786fa195c06db1e92a15482b0b
+  OpenCV: 533d4b33a02bd225c49838901db2a1ddb6efe6b1
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: a2faf4bad4e438ca37b2040cb8f7799baa065c18
@@ -1295,7 +1295,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 59d1eb03af7d30b7d66589c410f13151271e8006
   React-jsinspector: b511447170f561157547bc0bef3f169663860be7
   React-logger: c5b527272d5f22eaa09bb3c3a690fee8f237ae95
-  react-native-opencv: e786fda7310d8c7fd462b1d0ae038d7ab1a9c01f
+  react-native-opencv: a87807806dd025735bcd213d9f80e0b8291f9ae6
   React-NativeModulesApple: c57f3efe0df288a6532b726ad2d0322a9bf38472
   React-perflogger: 6bd153e776e6beed54c56b0847e1220a3ff92ba5
   React-RCTActionSheet: c0b62af44e610e69d9a2049a682f5dba4e9dff17
@@ -1318,6 +1318,6 @@ SPEC CHECKSUMS:
   Yoga: 8796b55dba14d7004f980b54bcc9833ee45b28ce
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 5e28f9ef6993d994aa2ec1c1759e2fe90eada9c5
+PODFILE CHECKSUM: 79ea6a95617056f4096a850cb549f19fedbb16f9
 
 COCOAPODS: 1.12.1
